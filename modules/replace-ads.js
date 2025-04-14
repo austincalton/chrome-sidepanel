@@ -17,7 +17,13 @@ export function replaceAds(tab) {
         if (!previewImage || !adIframes.length) return;
       
         adIframes.forEach(iframe => {
-          const img = document.createElement('img');
+          // To-do:
+            // Look at adjusting the element here from an image to a div with an image nested within
+            // Div should be exact size of the previous ad container
+            // Image should be applied within the div
+            // Allow user to adjust the size and position (similar to the header background in a Notion document)
+
+            const img = document.createElement('img');
           img.src = previewImage;
       
           const computedWidth = window.getComputedStyle(iframe).width || 'auto';
