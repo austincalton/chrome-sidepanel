@@ -23,7 +23,7 @@ export function replaceAds(tab) {
             // Image should be applied within the div
             // Allow user to adjust the size and position (similar to the header background in a Notion document)
 
-            const img = document.createElement('img');
+          const img = document.createElement('img');
           img.src = previewImage;
       
           const computedWidth = window.getComputedStyle(iframe).width || 'auto';
