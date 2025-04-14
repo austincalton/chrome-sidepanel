@@ -4,21 +4,21 @@
   </head>
   <body>
     <h1>Ad Preview</h1>
-    <ul>
-      <li>Forbes</li>
-      <li>CNN</li>
-      <li>ESPN</li>
-    </ul>
     <hr />
-    <h2>Import Ad via URL</h2>
+    <h2>Import Ad</h2>
+    <!-- To-do: 
+      - Add functionality to import ad via URL
+      - Add functionality to import ad via upload
+    -->
+    <h3>via URL</h3>
     <input placeholder="Paste URL here" type="text" id="url-input" />
-    <hr>
-    <h2>Upload Ad</h2>
+    <h3>via upload</h3>
     <input type="file" id="file-input" />
-    <hr>
+    <div style="height: 15px;"></div>
+    <hr />
     <h2>Page Actions</h2>
-    <button id="redBorderBtn">Add Red Border to Images</button>
-    <button id="replaceAdsBtn">Replace Ads</button>
+    <button data-function="replaceAds">Replace Ads</button>
+    <button data-function="stopAdReplacement">Stop Ad Replacement</button>
 
     <script type="module" src="sidepanel.js"></script>
   </body>
