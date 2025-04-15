@@ -1,5 +1,4 @@
 import { handleAdUpload } from './upload-ads.js';
-import { stopAdReplacement } from './replace-ads.js';
 import { alertSidepanel } from './messages.js';
 
 export function handleAdPreviewChange(e) {
@@ -18,7 +17,6 @@ export function handleAdPreviewChange(e) {
 
 async function updateAdImageUrl(imageUrl) {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  stopAdReplacement(tab);
 
   alertSidepanel(`Image url: ${imageUrl}`);
   

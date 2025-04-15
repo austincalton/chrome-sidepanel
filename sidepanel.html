@@ -6,10 +6,6 @@
     <h1>Ad Preview</h1>
     <hr />
     <h2>Import Ad</h2>
-    <!-- To-do: 
-      - Add functionality to import ad via URL
-      - Add functionality to import ad via upload
-    -->
     <h3>via URL</h3>
     <input placeholder="Paste URL here" type="text" id="url-input" data-img-preview="url-input-image" />
     <div style="height: 7px;"></div>
@@ -21,8 +17,9 @@
     <div style="height: 15px;"></div>
     <hr />
     <h2>Page Actions</h2>
-    <button data-function="replaceAds">Replace Ads</button>
-    <button data-function="stopAdReplacement">Stop Ad Replacement</button>
+    <button data-function="replaceAds" data-keep-aspect-ratio="true">Replace Ads (Keep Aspect Ratio)</button>
+    <div style="height: 7px;"></div>
+    <button data-function="replaceAds" data-keep-aspect-ratio="false">Replace Ads (Do Not Keep Aspect Ratio)</button>
     <div style="height: 15px;"></div>
     <hr />
     <h2>Messages</h2>

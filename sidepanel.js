@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { replaceAds, stopAdReplacement } from './modules/replace-ads.js';
+import { replaceAds } from './modules/replace-ads.js';
 import { handleAdPreviewChange } from './modules/ad-preview.js';
 import { alertSidepanel } from './modules/messages.js';
-import { defineAdjustableImageContainer } from './classes/adjustable-image-container.js';
 
 (async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -23,13 +22,11 @@ import { defineAdjustableImageContainer } from './classes/adjustable-image-conta
 })();
 
 function initWithActiveTab(tab) {
-  defineAdjustableImageContainer(tab);
-  alertSidepanel('AdjustableImageContainer defined');
+  // Add methods here as needed
 }
 
 const functionMap = {
-  replaceAds,
-  stopAdReplacement
+  replaceAds
 };
 
 const buttons = document.querySelectorAll('button[data-function]');
@@ -41,7 +38,7 @@ buttons.forEach(button => {
 
     if (functionMap[functionName]) {
       alertSidepanel(`Function ${functionName} called`);
-      functionMap[functionName](tab);
+      functionMap[functionName](tab, button.dataset.keepAspectRatio);
       return;
     }
     console.error(`Function ${functionName} not found`);
