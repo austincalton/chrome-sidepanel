@@ -11,14 +11,22 @@
       - Add functionality to import ad via upload
     -->
     <h3>via URL</h3>
-    <input placeholder="Paste URL here" type="text" id="url-input" />
+    <input placeholder="Paste URL here" type="text" id="url-input" data-img-preview="url-input-image" />
+    <div style="height: 7px;"></div>
+    <img style="max-width: 100%; width: 150px; height: auto; display: none;" src="" alt="" id="url-input-image">
     <h3>via upload</h3>
-    <input type="file" id="file-input" />
+    <input type="file" id="file-input" data-img-preview="file-input-image" />
+    <div style="height: 7px;"></div>
+    <img style="max-width: 100%; width: 150px; height: auto; display: none;" src="" alt="" id="file-input-image">
     <div style="height: 15px;"></div>
     <hr />
     <h2>Page Actions</h2>
     <button data-function="replaceAds">Replace Ads</button>
     <button data-function="stopAdReplacement">Stop Ad Replacement</button>
+    <div style="height: 15px;"></div>
+    <hr />
+    <h2>Messages</h2>
+    <textarea name="messages" id="messages" rows="10" readonly style="width: 100%;"></textarea>
 
     <script type="module" src="sidepanel.js"></script>
   </body>

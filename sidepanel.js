@@ -13,7 +13,19 @@
 // limitations under the License.
 
 import { replaceAds, stopAdReplacement } from './modules/replace-ads.js';
-import { handleAdUpload } from './modules/upload-ads.js';
+import { handleAdPreviewChange } from './modules/ad-preview.js';
+import { alertSidepanel } from './modules/messages.js';
+import { defineAdjustableImageContainer } from './classes/adjustable-image-container.js';
+
+(async () => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  initWithActiveTab(tab);
+})();
+
+function initWithActiveTab(tab) {
+  defineAdjustableImageContainer(tab);
+  alertSidepanel('AdjustableImageContainer defined');
+}
 
 const functionMap = {
   replaceAds,
@@ -28,6 +40,7 @@ buttons.forEach(button => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
     if (functionMap[functionName]) {
+      alertSidepanel(`Function ${functionName} called`);
       functionMap[functionName](tab);
       return;
     }
@@ -35,23 +48,14 @@ buttons.forEach(button => {
   });
 });
 
-document.getElementById('file-input').addEventListener('change', (e) => {
-  const imageUrl = handleAdUpload(e);
-  if (!imageUrl) return;
-  
-  // To-do:
-    // Update the image preview in the sidepanel
-    // Check if the replaceAds mutation observer is active
-      // If it is, stop it
-    // Then update the source used in the replace-ads script
-    // Re-run replace ads and start the mutation observer
+document.querySelectorAll('input[data-img-preview][type="file"]').forEach(input => {
+  input.addEventListener('change', async (e) => {
+    handleAdPreviewChange(e);
+  });
+});
 
-    // In this file, "document" refers to the sidepanel.html document
-  chrome.runtime.sendMessage({ type: 'UPDATE_IMAGE_URL', imageUrl });
-  chrome.tabs.sendMessage(tab.id, { type: 'UPDATE_IMAGE_URL', imageUrl });
-
-  const imageElement = document.getElementById('uploaded-image');
-  if (!imageElement) return;
-
-  imageElement.src = imageUrl;
+document.querySelectorAll('input[data-img-preview][type="text"]').forEach(input => {
+  input.addEventListener('input', async (e) => {
+    handleAdPreviewChange(e);
+  });
 });
