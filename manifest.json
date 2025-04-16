@@ -1,8 +1,8 @@
 {
-  "name": "Demo Side Panel",
+  "name": "Ad Previewer",
   "version": "0.1",
   "manifest_version": 3,
-  "description": "A demo of a side panel extension.",
+  "description": "Allows you to insert ads into webpages for preview.",
   "background": {
     "service_worker": "service-worker.js"
   },

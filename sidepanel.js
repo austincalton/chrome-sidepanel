@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { replaceAds } from './modules/replace-ads.js';
+import { replaceAds, stopAdReplacement } from './modules/replace-ads.js';
 import { handleAdPreviewChange } from './modules/ad-preview.js';
 import { alertSidepanel } from './modules/messages.js';
 
@@ -26,19 +26,22 @@ function initWithActiveTab(tab) {
 }
 
 const functionMap = {
-  replaceAds
+  replaceAds,
+  stopAdReplacement
 };
 
 const buttons = document.querySelectorAll('button[data-function]');
 
+// 2 - Add a toggle to control aspect ratios and apply it when clicked
+
 buttons.forEach(button => {
   button.addEventListener('click', async () => {
     const functionName = button.dataset.function;
+    const lockAspectRatio = document.getElementById('keep-aspect-ratio-toggle').checked;
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
     if (functionMap[functionName]) {
-      alertSidepanel(`Function ${functionName} called`);
-      functionMap[functionName](tab, button.dataset.keepAspectRatio);
+      functionMap[functionName](tab, lockAspectRatio);
       return;
     }
     console.error(`Function ${functionName} not found`);

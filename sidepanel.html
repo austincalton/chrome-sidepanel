@@ -1,29 +1,40 @@
 <html>
   <head>
-    <title>Ad Preview</title>
+    <title>Ad Previewer</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>Ad Preview</h1>
+    <div class="section">
+      <h2>Import Ad</h2>
+      <h3>via URL</h3>
+      <input placeholder="Paste URL here" type="text" id="url-input" data-img-preview="url-input-image" class="w-100" />
+      <div class="h-7px"></div>
+      <img class="max-w-100 w-150px h-auto" style="display: none;" src="" alt="" id="url-input-image">
+      <h3>via upload</h3>
+      <input type="file" id="file-input" data-img-preview="file-input-image" class="w-100" />
+      <div class="h-7px"></div>
+      <img class="max-w-100 w-150px h-auto" style="display: none;" src="" alt="" id="file-input-image">
+    </div>
+    <div class="h-15px"></div>
     <hr />
-    <h2>Import Ad</h2>
-    <h3>via URL</h3>
-    <input placeholder="Paste URL here" type="text" id="url-input" data-img-preview="url-input-image" />
-    <div style="height: 7px;"></div>
-    <img style="max-width: 100%; width: 150px; height: auto; display: none;" src="" alt="" id="url-input-image">
-    <h3>via upload</h3>
-    <input type="file" id="file-input" data-img-preview="file-input-image" />
-    <div style="height: 7px;"></div>
-    <img style="max-width: 100%; width: 150px; height: auto; display: none;" src="" alt="" id="file-input-image">
-    <div style="height: 15px;"></div>
+    <div class="section">
+      <h2>Page Actions</h2>
+      <input type="checkbox" id="keep-aspect-ratio-toggle" checked />
+      <!-- To-do:
+        Find a way to store the checkbox state when sidepanel is closed
+      -->
+      <label for="keep-aspect-ratio-toggle">Keep aspect ratio</label>
+      <div class="h-7px"></div>
+      <button data-function="replaceAds">Replace Ads</button>
+      <div class="h-7px"></div>
+      <button data-function="stopAdReplacement">Stop Ad Replacement</button>
+    </div>
+    <div class="h-15px"></div>
     <hr />
-    <h2>Page Actions</h2>
-    <button data-function="replaceAds" data-keep-aspect-ratio="true">Replace Ads (Keep Aspect Ratio)</button>
-    <div style="height: 7px;"></div>
-    <button data-function="replaceAds" data-keep-aspect-ratio="false">Replace Ads (Do Not Keep Aspect Ratio)</button>
-    <div style="height: 15px;"></div>
-    <hr />
-    <h2>Messages</h2>
-    <textarea name="messages" id="messages" rows="10" readonly style="width: 100%;"></textarea>
+    <div class="section">
+      <h2>Messages</h2>
+      <textarea name="messages" id="messages" rows="10" readonly class="w-100"></textarea>
+    </div>
 
     <script type="module" src="sidepanel.js"></script>
   </body>

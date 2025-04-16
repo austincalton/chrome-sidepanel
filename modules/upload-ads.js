@@ -16,5 +16,20 @@ export function handleAdUpload(e) {
   }
   
   // Create and return a URL for the image
-  return URL.createObjectURL(file);
+  // return URL.createObjectURL(file);
+
+  // Return a Promise that resolves with the data URL
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      resolve(e.target.result);
+    };
+
+    reader.onerror = function (error) {
+      reject(error);
+    };
+
+    reader.readAsDataURL(file);
+  });
 }
