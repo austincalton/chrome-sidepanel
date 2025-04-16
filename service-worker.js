@@ -12,6 +12,51 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { replaceAds } from './modules/replace-ads.js';
+
 chrome.sidePanel
   .setPanelBehavior({ openPanelOnActionClick: true })
   .catch((error) => console.error(error));
+
+function setupContextMenu() {
+  const allcontexts = [
+    'page',
+    'selection',
+    'link',
+    'editable',
+    'image',
+    'video',
+    'audio',
+    'frame'
+  ];
+
+  createContextMenu('upload-ads', 'Upload Ads', allcontexts);
+  createContextMenu('replace-ads', 'Replace Ads', allcontexts);
+  createContextMenu('replace-ads-match-aspect-ratio', 'Replace Ads (Match Aspect Ratio)', allcontexts);
+}
+
+function createContextMenu(id, title, contexts) {
+  chrome.contextMenus.create({
+    id: id,
+    title: title,
+    contexts: contexts
+  });
+}
+
+chrome.runtime.onInstalled.addListener(() => {
+  setupContextMenu();
+});
+
+chrome.contextMenus.onClicked.addListener((data, tab) => {
+  switch(data.menuItemId) {
+    case 'replace-ads':
+      replaceAds(tab, false);
+      break;
+    case 'replace-ads-match-aspect-ratio':
+      replaceAds(tab, true);
+      break;
+    case 'upload-ads':
+      chrome.sidePanel.open({ tabId: tab.id });
+      break;
+  }
+});

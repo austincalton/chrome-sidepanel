@@ -4,6 +4,16 @@ export function replaceAds(tab, keepAspectRatio = true) {
     args: [keepAspectRatio],
     func: (keepAspectRatio) => {
 
+      console.log('stopAdReplacement() called');
+      if (window.adReplacementObserver) {
+        window.adReplacementObserver.disconnect();
+        window.adReplacementObserver = null;
+      }
+
+      function getAdSelectors() {
+        return 'iframe[src*="googleadservices"], iframe[src*="doubleclick"], iframe[id*="google_ads_iframe"], iframe.bx-gbi-frame, img.chrome-ad-preview-replacement';
+      }
+
       function getAdImage() {
         return new Promise((resolve) => {
           chrome.storage.local.get('adImageUrl', (result) => {
@@ -27,6 +37,8 @@ export function replaceAds(tab, keepAspectRatio = true) {
         const container = document.createElement('div');
         container.classList.add('chrome-ad-preview-replacement-container');
         container.style.width = width;
+        container.style.setProperty('margin-left', 'auto', 'important');
+        container.style.setProperty('margin-right', 'auto', 'important');
 
         const img = document.createElement('img');
         img.src = imageSrc;
@@ -58,7 +70,7 @@ export function replaceAds(tab, keepAspectRatio = true) {
 
       async function updateFrames(keepAspectRatio) {
         let previewImage = await getAdImage();
-        const adSelectors = 'iframe[src*="googleadservices"], iframe[src*="doubleclick"], iframe[id*="google_ads_iframe"], iframe.bx-gbi-frame, img.chrome-ad-preview-replacement';
+        const adSelectors = getAdSelectors();
         const adFrames = [...document.querySelectorAll(adSelectors)]
           .filter(frame => frame.style.display !== 'none');
       
@@ -129,6 +141,7 @@ export function replaceAds(tab, keepAspectRatio = true) {
         window.adReplacementObserver.observe(document.body, observerOptions);
       }
     }
+
   });
 }
 

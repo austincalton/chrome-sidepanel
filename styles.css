@@ -1,3 +1,5 @@
+/* Width & Height */
+
 .w-100 {
   width: 100%;
 }
@@ -18,10 +20,54 @@
   height: auto;
 }
 
+/* Spacers */
+
 .h-7px {
   height: 7px;
 }
 
 .h-15px {
   height: 15px;
+}
+
+/* Flex */
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-start {
+  justify-content: start;
+}
+
+.justify-end {
+  justify-content: end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: start;
+}
+
+.items-end {
+  align-items: end;
+}
+
+/* Margin & Padding */
+
+.mt-0 {
+  margin-top: 0;
+}
+
+/* Display */
+
+.hidden {
+  display: none !important;
 }

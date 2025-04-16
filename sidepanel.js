@@ -13,17 +13,15 @@
 // limitations under the License.
 
 import { replaceAds, stopAdReplacement } from './modules/replace-ads.js';
-import { handleAdPreviewChange } from './modules/ad-preview.js';
+import { handleAdPreviewChange, setAdPreviews } from './modules/ad-preview.js';
 import { alertSidepanel } from './modules/messages.js';
+
+setAdPreviews();
 
 (async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  initWithActiveTab(tab);
+  // Call methods on the tab as needed
 })();
-
-function initWithActiveTab(tab) {
-  // Add methods here as needed
-}
 
 const functionMap = {
   replaceAds,
@@ -31,8 +29,6 @@ const functionMap = {
 };
 
 const buttons = document.querySelectorAll('button[data-function]');
-
-// 2 - Add a toggle to control aspect ratios and apply it when clicked
 
 buttons.forEach(button => {
   button.addEventListener('click', async () => {

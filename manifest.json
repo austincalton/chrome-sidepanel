@@ -4,7 +4,8 @@
   "manifest_version": 3,
   "description": "Allows you to insert ads into webpages for preview.",
   "background": {
-    "service_worker": "service-worker.js"
+    "service_worker": "service-worker.js",
+    "type": "module"
   },
   "side_panel": {
     "default_path": "sidepanel.html"
