@@ -12,11 +12,11 @@ This Chrome extension provides a convenient side panel for previewing and managi
 
 ## Demos
 
-- [Using the sidepanel](demo-videos/ad-previewer-demo-using-sidepanel.mp4)
-- [Using the context menu](demo-videos/ad-previewer-demo-using-contextmenu.mp4)
+- View videos here: https://go-sokal.notion.site/Ad-Previewer-Chrome-Extension-1d8a519dc946801ebcebeeb70bcfe64c?pvs=4
 
 ## Installation
-- A detailed install with screenshots is available here: https://go-sokal.notion.site/Ad-Previewer-Chrome-Extension-1d8a519dc946801ebcebeeb70bcfe64c?pvs=4
+
+- A detailed install with screenshots is available here: https://go-sokal.notion.site/Quick-Install-1d8a519dc94680c8b762e5fecfbedb17?pvs=4
 
 ### Prerequisites
 
