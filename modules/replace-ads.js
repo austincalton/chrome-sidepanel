@@ -3,8 +3,6 @@ export function replaceAds(tab, keepAspectRatio = true) {
     target: { tabId: tab.id },
     args: [keepAspectRatio],
     func: (keepAspectRatio) => {
-
-      console.log('stopAdReplacement() called');
       if (window.adReplacementObserver) {
         window.adReplacementObserver.disconnect();
         window.adReplacementObserver = null;
@@ -149,7 +147,6 @@ export function stopAdReplacement(tab) {
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: () => {
-      console.log('stopAdReplacement() called');
       if (window.adReplacementObserver) {
         window.adReplacementObserver.disconnect();
         window.adReplacementObserver = null;

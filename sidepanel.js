@@ -55,3 +55,17 @@ document.querySelectorAll('input[data-img-preview][type="text"]').forEach(input 
     handleAdPreviewChange(e);
   });
 });
+
+document.querySelectorAll('.ad-input-tablink').forEach(button => {
+  button.addEventListener('click', (e) => {
+    const adSourceKey = button.getAttribute('data-tab').replace('-tab', '');
+
+    chrome.storage.local.get(adSourceKey, (result) => {
+      if (result[adSourceKey]) {
+        chrome.storage.local.set({ adImageUrl: result[adSourceKey] });
+      }
+    });
+
+    chrome.storage.local.set({ adSourceTab: button.getAttribute('data-tab') });
+  });
+});

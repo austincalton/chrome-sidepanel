@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { replaceAds } from './modules/replace-ads.js';
+import { replaceAds, stopAdReplacement } from './modules/replace-ads.js';
 
 chrome.sidePanel
   .setPanelBehavior({ openPanelOnActionClick: true })
@@ -30,9 +30,10 @@ function setupContextMenu() {
     'frame'
   ];
 
-  createContextMenu('upload-ads', 'Upload Ads', allcontexts);
+  createContextMenu('set-ad-source', 'Set Ad Source', allcontexts);
   createContextMenu('replace-ads', 'Replace Ads', allcontexts);
   createContextMenu('replace-ads-match-aspect-ratio', 'Replace Ads (Match Aspect Ratio)', allcontexts);
+  createContextMenu('stop-ad-replacement', 'Stop Ad Replacement', allcontexts);
 }
 
 function createContextMenu(id, title, contexts) {
@@ -55,8 +56,11 @@ chrome.contextMenus.onClicked.addListener((data, tab) => {
     case 'replace-ads-match-aspect-ratio':
       replaceAds(tab, true);
       break;
-    case 'upload-ads':
+    case 'set-ad-source':
       chrome.sidePanel.open({ tabId: tab.id });
+      break;
+    case 'stop-ad-replacement':
+      stopAdReplacement(tab);
       break;
   }
 });
